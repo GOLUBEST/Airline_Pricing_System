@@ -213,8 +213,9 @@ class BookingViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # Return mock bookings from file for the current user
+        import tempfile
         username = self.request.user.username
-        bookings_file = f"/tmp/user_bookings_{username}.json"
+        bookings_file = os.path.join(tempfile.gettempdir(), f"user_bookings_{username}.json")
         if os.path.exists(bookings_file):
             with open(bookings_file, 'r') as f:
                 try:
@@ -234,8 +235,9 @@ class BookingViewSet(viewsets.ModelViewSet):
         # Save booking to a per-user file in /tmp
         import random
         from datetime import datetime
+        import tempfile
         username = request.data.get('user') or request.user.username
-        bookings_file = f"/tmp/user_bookings_{username}.json"
+        bookings_file = os.path.join(tempfile.gettempdir(), f"user_bookings_{username}.json")
         booking_id = random.randint(100000, 999999)
         booking_time = datetime.now().isoformat()
         booking = {

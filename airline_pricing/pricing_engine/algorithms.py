@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import numpy as np
 from typing import List, Dict, Any
+import heapq
 
 class PricingEngine:
     def __init__(self):
@@ -153,3 +154,38 @@ class PricingEngine:
             'bookings': bookings,
             'timestamp': datetime.now()
         })
+
+class RouteOptimizer:
+    """
+    Advanced routing algorithms for multi-city flight searches.
+    """
+    def __init__(self):
+        pass
+
+    def dijkstra_cheapest_route(self, graph: Dict[str, Dict[str, float]], start: str, end: str) -> Dict[str, Any]:
+        """
+        Calculates the absolutely cheapest multi-city flight route using Dijkstra's Algorithm.
+        :param graph: Adjacency list representing airport connections and flight prices.
+                      e.g., {'ATQ': {'DEL': 3500, 'BOM': 6000}, 'DEL': {'AMD': 4000}}
+        :return: Dictionary containing the cheapest path and total cost.
+        """
+        # Min-heap priority queue storing tuples of (current_cost, current_node, path)
+        pq = [(0, start, [start])]
+        visited = set()
+
+        while pq:
+            current_cost, current_node, path = heapq.heappop(pq)
+
+            if current_node == end:
+                return {"path": path, "total_cost": current_cost}
+
+            if current_node in visited:
+                continue
+                
+            visited.add(current_node)
+
+            for neighbor, price in graph.get(current_node, {}).items():
+                if neighbor not in visited:
+                    heapq.heappush(pq, (current_cost + price, neighbor, path + [neighbor]))
+
+        return {"path": [], "total_cost": float('inf')}
