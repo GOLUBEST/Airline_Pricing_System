@@ -48,6 +48,7 @@ Axios
 Nivo / Chart.js-based charting libraries
 jsPDF (for export/report functionality)
 🗂 Project Structure
+Text
 Airline_Pricing_System/
 ├── README.md
 ├── package.json
@@ -75,39 +76,51 @@ Node.js 18+
 npm 9+
 Git
 1) Clone Repository
+bash
 git clone https://github.com/GOLUBEST/Airline_Pricing_System.git
 cd Airline_Pricing_System
 2) Backend Setup (Django)
-Run these commands from the repository root.
+Run these commands from the repository root:
 
+bash
 cd airline_pricing
 python -m venv .venv
-Activate virtual environment
+Activate virtual environment:
+
 Windows (PowerShell):
 
+bash
 .venv\Scripts\Activate.ps1
 Windows (CMD):
 
+bash
 .venv\Scripts\activate.bat
 macOS / Linux:
 
+bash
 source .venv/bin/activate
-Install backend dependencies
-If you have a requirements.txt, run:
+Install backend dependencies:
 
+bash
 pip install -r requirements.txt
-If not, install Django first:
+If requirements.txt is not present yet:
 
+bash
 pip install django
-Apply migrations
+Apply migrations:
+
+bash
 python manage.py migrate
-Start backend server
+Start backend server:
+
+bash
 python manage.py runserver
 Backend runs at: http://127.0.0.1:8000/
 
 3) Frontend Setup (React)
 Open a new terminal and run:
 
+bash
 cd frontend
 npm install
 npm start
@@ -117,9 +130,11 @@ Frontend runs at: http://localhost:3000/
 To run full stack locally:
 
 Start backend:
+bash
 cd airline_pricing
 python manage.py runserver
 Start frontend in another terminal:
+bash
 cd frontend
 npm start
 Ensure both servers are running simultaneously.
@@ -140,13 +155,16 @@ You can replace or extend these datasets to test different pricing scenarios.
 
 🧯 Troubleshooting
 Port already in use
-Backend port conflict:
+Backend:
+bash
 python manage.py runserver 8001
-Frontend port conflict: React will prompt for another port.
+Frontend: React will prompt for another port.
 Module not found (frontend)
+bash
 cd frontend
 npm install
 Django not found
+bash
 pip install django
 Virtual environment issues
 Delete and recreate .venv, then reinstall dependencies.
@@ -174,3 +192,4 @@ Consider adding an open-source license (e.g., MIT) for clearer usage terms.
 👤 Maintainer
 GOLUBEST
 GitHub: https://github.com/GOLUBEST
+
